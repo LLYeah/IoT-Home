@@ -36,10 +36,7 @@ public class TwoFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        System.out.println("%%%%%%%%%%%%%%%%%"+OneFragment.flag);
-        if (OneFragment.flag){
-            initView(view);
-        }
+        initView(view);
     }
     private void initView(View view){
         mChart1 = (LineChart) view.findViewById(R.id.chart1);
@@ -224,5 +221,10 @@ public class TwoFragment extends Fragment {
             }
         });
         return set;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.exit(0);
     }
 }
