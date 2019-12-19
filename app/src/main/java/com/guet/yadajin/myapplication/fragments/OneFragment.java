@@ -40,7 +40,7 @@ public class OneFragment extends Fragment {
     java.io.InputStream InputStream = null;//定义数据输入流，用于接收数据
 
     private Handler mainHandle = new Handler(Looper.getMainLooper());
-    String[] strArr = new String[3];
+    static String[] strArr = new String[3];
     String ID="0001";//安卓端设备序号
     String TO="0002";//硬件端设备序号
     String[] msg_to_send={"LED_ON","LED_OFF","ISK"};
