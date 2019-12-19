@@ -36,17 +36,4 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {  //获得viewPager中有多少个view
         return PAGER_COUNT;
     }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        //在viewPager容器中一次最多只可以存3个view,假设有1 2 3,则处于1界面时缓存1 2,处于2时缓存1 2 3,处于3时缓存2 3
-        super.destroyItem(container, position, object);
-    }
-
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        return super.instantiateItem(container, position);
-    }
-
 }

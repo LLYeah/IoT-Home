@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.LineChart;
 import com.guet.yadajin.myapplication.R;
 
 public class TwoFragment extends Fragment {
+
+    private final int HIGH = 0;
+    private final int LOW = 1;
+    private LineChart mChart1;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
