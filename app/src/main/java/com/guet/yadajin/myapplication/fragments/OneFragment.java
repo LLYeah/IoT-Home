@@ -34,13 +34,13 @@ public class OneFragment extends Fragment {
     java.net.Socket Socket = null;//Socket
     boolean buttontitle = true;//定义一个逻辑变量，用于判断连接服务器按钮状态
     boolean RD = false;//用于控制读数据线程是否执行
-    LineChart mChart1;
+    static boolean flag=false;//标记位
 
     java.io.OutputStream OutputStream = null;//定义数据输出流，用于发送数据
     java.io.InputStream InputStream = null;//定义数据输入流，用于接收数据
 
     private Handler mainHandle = new Handler(Looper.getMainLooper());
-    static String[] strArr = new String[3];
+    static String[] strArr = {"0","0"};
     String ID="0001";//安卓端设备序号
     String TO="0002";//硬件端设备序号
     String[] msg_to_send={"LED_ON","LED_OFF","ISK"};
@@ -56,7 +56,6 @@ public class OneFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initView(view);
     }
 
@@ -77,8 +76,6 @@ public class OneFragment extends Fragment {
                 buttonClick();
             }
         });
-
-        mChart1 = (LineChart) view.findViewById(R.id.chart1);
 
         temp = (TextView) view.findViewById(R.id.temperature);//获得温度值
         humi = (TextView) view.findViewById(R.id.humidity);//获得湿度值
@@ -178,6 +175,7 @@ public class OneFragment extends Fragment {
             //根据RD变量的值判断是否执行读数据
             while (RD) {
                 try {
+                    flag=true;//表示已经读取数据了。
                     //定义一个字节集，存放输入的数据，缓存区大小为2048字节
                     final byte[] ReadBuffer = new byte[2048];
                     //用于存放数据量
@@ -207,7 +205,7 @@ public class OneFragment extends Fragment {
                         StringBuilder sb = new StringBuilder();//string转ascii
                         //转为UTF-8编码后显示在编辑框中
                         Log.w("tag",textdata+"%"+textdata.length());
-                        if (textdata.length()<=5){
+                        if (textdata.length()<=5){//数据存入的地方
                             strArr = textdata.split("\\|");
                         }
                         System.out.println(strArr[0]+"$"+strArr[1]);
@@ -251,4 +249,6 @@ public class OneFragment extends Fragment {
             }
         }
     }
+
+
 }

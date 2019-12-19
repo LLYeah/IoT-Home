@@ -28,6 +28,5 @@ public class TcpclientActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         MyViewPagerAdapter myFragmentPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myFragmentPagerAdapter);
-
     }
 }
