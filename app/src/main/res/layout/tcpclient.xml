@@ -13,7 +13,6 @@
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:src="@mipmap/sun_main"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,92 +111,201 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_gravity="center_vertical"
-            android:text="IP/域名："
-            android:textAlignment="center"
-            android:textSize="22sp" />
-        <EditText
-            android:id="@+id/IPEdit"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_gravity="center_vertical"
-            android:text="111.230.59.85" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="100dp"
-            android:layout_height="37dp"
-            android:text="端口："
-            android:layout_gravity="center_vertical"
-            android:textAlignment="center"
-            android:textSize="22sp" />
-        <EditText
-            android:id="@+id/portEdit"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/bg_press"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="IP/域名："
+                        android:textAlignment="center"
+                        android:textSize="22sp" />
+
+                    <EditText
+                        android:id="@+id/IPEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="textPersonName"
+                        android:text="111.230.59.85" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="100dp"
+                        android:layout_height="37dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="端口："
+                        android:textAlignment="center"
+                        android:textSize="22sp" />
+
+                    <EditText
+                        android:id="@+id/portEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="textPersonName"
+                        android:text="10088" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="发 送 数 据"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.084"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.593" />
+
+                    <Button
+                        android:id="@+id/Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="连 接 服 务 器"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.96"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.593" />
+
+                    <Switch
+                        android:id="@+id/ON_OFF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:showText="true"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:textOff="OFF"
+                        android:textOn="ON"
+                        android:thumb="@drawable/switch_rectangle_thumb_selector"
+                        android:track="@drawable/switch_rectangle_track" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_gravity="center_vertical"
-            android:text="10088" />
-    </LinearLayout>
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:text="发 送 数 据"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.084"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.593" />
-        <Button
-            android:id="@+id/Button"
-            android:layout_width="wrap_content"
-            android:layout_height="49dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:text="连 接 服 务 器"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.593" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <Switch
-            android:id="@+id/ON_OFF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:showText="true"
-            android:switchTextAppearance="@style/SwitchTheme"
-            android:textOff="OFF"
-            android:textOn="ON"
-            android:thumb="@drawable/switch_rectangle_thumb_selector"
-            android:track="@drawable/switch_rectangle_track" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@mipmap/air_aiq" />
+                    <TextView
+                        android:layout_toRightOf="@id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="卧室灯"
+                        android:textSize="35dp"/>
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:textOff="OFF"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textOn="ON"
+                        android:thumb="@drawable/switch_rectangle_thumb_selector"
+                        android:track="@drawable/switch_rectangle_track"
+                        android:showText="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@mipmap/air_aiq" />
+                    <TextView
+                        android:layout_toRightOf="@id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="风扇"
+                        android:textSize="35dp"/>
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:textOff="OFF"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textOn="ON"
+                        android:thumb="@drawable/switch_rectangle_thumb_selector"
+                        android:track="@drawable/switch_rectangle_track"
+                        android:showText="true"/>
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>
