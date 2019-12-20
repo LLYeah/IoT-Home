@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,15 +78,15 @@ public class TwoFragment extends Fragment {
         // 增加温度
         LineDataSet highLineDataSet1 = lineData1.getDataSetByIndex(HIGH);
         float temp = Float.parseFloat(OneFragment.strArr[0]);//温度值
-        System.out.println("&&&"+temp);
         Entry entryTemp = new Entry(temp, highLineDataSet1.getEntryCount());
         lineData1.addEntry(entryTemp, HIGH);
-
         // 增加湿度
         LineDataSet lowLineDataSet1 = lineData1.getDataSetByIndex(LOW);
         float humi = Float.parseFloat(OneFragment.strArr[1]);//湿度值
         Entry entryLow = new Entry(humi, lowLineDataSet1.getEntryCount());
         lineData1.addEntry(entryLow, LOW);
+
+        Log.w("msg","UI界面 温度："+temp+" 湿度："+humi);
 
         // 使用新数据刷新图表
         mChart1.notifyDataSetChanged();
