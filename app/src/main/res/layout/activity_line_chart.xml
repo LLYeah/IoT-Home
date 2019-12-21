@@ -16,12 +16,10 @@
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/list_item_background_pressed"
             app:cardCornerRadius="16dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -33,10 +31,22 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/imageView1"
-                        android:text="温度℃"
-                        android:textSize="15dp"
+                        android:text="湿度"
+                        android:textSize="20dp"
                         android:textStyle="italic" />
 
+                    <Switch
+                        android:id="@+id/btnHumi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:showText="true"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:textOff="OFF"
+                        android:textOn="ON"
+                        android:thumb="@drawable/switch_rectangle_thumb_selector"
+                        android:track="@drawable/switch_rectangle_track" />
                 </RelativeLayout>
 
                 <com.github.mikephil.charting.charts.LineChart
@@ -52,13 +62,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/list_item_background_pressed"
-            app:cardCornerRadius="16dp">
-
+            app:cardCornerRadius="16dp" >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,10 +78,22 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/imageView1"
-                        android:text="湿度RH"
-                        android:textSize="15dp"
-                        android:textStyle="italic" />
+                        android:text="温度"
+                        android:textStyle="italic"
+                        android:textSize="20dp" />
 
+                    <Switch
+                        android:id="@+id/btnTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:showText="true"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:textOff="OFF"
+                        android:textOn="ON"
+                        android:thumb="@drawable/switch_rectangle_thumb_selector"
+                        android:track="@drawable/switch_rectangle_track" />
                 </RelativeLayout>
 
                 <com.github.mikephil.charting.charts.LineChart

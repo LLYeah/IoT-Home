@@ -30,23 +30,29 @@ public class OneFragment extends Fragment {
     TextView temp;//温度
     TextView humi;//湿度
     Switch aSwitch ;
+    Switch aSwitch1;
+    Switch aSwitch2;
     android.widget.Button Button;//连接服务器按钮对象
     java.net.Socket Socket = null;//Socket
     boolean buttontitle = true;//定义一个逻辑变量，用于判断连接服务器按钮状态
     boolean RD = false;//用于控制读数据线程是否执行
-    static boolean flag=false;//标记位
+    LineChart mChart1;
 
     java.io.OutputStream OutputStream = null;//定义数据输出流，用于发送数据
     java.io.InputStream InputStream = null;//定义数据输入流，用于接收数据
 
     private Handler mainHandle = new Handler(Looper.getMainLooper());
-    static String[] strArr = {"0","0"};
+    static String[] strArr ={"0","0"};
     String ID="0001";//安卓端设备序号
     String TO="0002";//硬件端设备序号
-    String[] msg_to_send={"LED_ON","LED_OFF","ISK"};
+    String[] msg_to_send={"LED_ON","LED_OFF","AIR_ON","AIR_OFF","TEM_ON","TEM_OFF"};
     String led_on  = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[0]+"\"}";
     String led_off = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[1]+"\"}";
-    String led_isk = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[2]+"\"}";
+    String air_on = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[2]+"\"}";
+    String air_off = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[3]+"\"}";
+    String temp_on = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[4]+"\"}";
+    String temp_off = "{\"id\":\""+ID+"\",\"to\":\""+TO+"\",\"msg\":\""+msg_to_send[5]+"\"}";
+    TextView index;//安全指数
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -56,6 +62,7 @@ public class OneFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initView(view);
     }
 
@@ -69,17 +76,19 @@ public class OneFragment extends Fragment {
                 link(view);
             }
         });
-        android.widget.Button btn1 = view.findViewById(R.id.button);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonClick();
-            }
-        });
+
+        mChart1 = (LineChart) view.findViewById(R.id.chart1);
 
         temp = (TextView) view.findViewById(R.id.temperature);//获得温度值
         humi = (TextView) view.findViewById(R.id.humidity);//获得湿度值
+        index = (TextView)view.findViewById(R.id.index);//安全指数
+
         aSwitch= (Switch) view.findViewById(R.id.ON_OFF);
+        aSwitch1= (Switch) view.findViewById(R.id.ON_OFF1);
+        aSwitch2= (Switch) view.findViewById(R.id.ON_OFF2);
+        /**
+         * aSwitch:控制室内灯
+         */
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -92,6 +101,36 @@ public class OneFragment extends Fragment {
                 }
             }
         });
+        /**
+         * aSwitch1:控制风扇
+         */
+        aSwitch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    ThreadSendData t1 = new ThreadSendData(air_on);
+                    t1.start();
+                } else{
+                    ThreadSendData t1 = new ThreadSendData(air_off);
+                    t1.start();
+                }
+            }
+        });
+        /**
+         * aSwitch2:控制增温器
+         */
+        aSwitch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    ThreadSendData t1 = new ThreadSendData(temp_on);
+                    t1.start();
+                } else{
+                    ThreadSendData t1 = new ThreadSendData(temp_off);
+                    t1.start();
+                }
+            }
+        });
     }
     @Nullable
     @Override
@@ -100,13 +139,6 @@ public class OneFragment extends Fragment {
         return rootView;
     }
 
-    public void buttonClick(){
-        // 响应事件
-        Toast ts = Toast.makeText(getContext(),"发送测试成功！",Toast.LENGTH_LONG);
-        ts.show();
-        ThreadSendData t1 = new ThreadSendData(led_isk);
-        t1.start();
-    }
     //连接服务器按钮按下
     public void link(View view){
         //判断按钮状态
@@ -175,7 +207,6 @@ public class OneFragment extends Fragment {
             //根据RD变量的值判断是否执行读数据
             while (RD) {
                 try {
-                    flag=true;//表示已经读取数据了。
                     //定义一个字节集，存放输入的数据，缓存区大小为2048字节
                     final byte[] ReadBuffer = new byte[2048];
                     //用于存放数据量
@@ -204,14 +235,19 @@ public class OneFragment extends Fragment {
                         textdata = new String(ReadBuffer,0,ReadBufferLengh,"UTF-8");//原始编码数据
                         StringBuilder sb = new StringBuilder();//string转ascii
                         //转为UTF-8编码后显示在编辑框中
-                        Log.w("tag",textdata+"%"+textdata.length());
-                        if (textdata.length()<=5){//数据存入的地方
-                            strArr = textdata.split("\\|");
+                        Log.w("tag","数据页面 data:"+textdata+"======="+textdata.replaceAll("\r|\n", "")+" length:"+textdata.length());
+                        if (textdata.length()<=6){
+                            strArr=textdata.replaceAll("\r|\n", "").split("\\|");
                         }
-                        System.out.println(strArr[0]+"$"+strArr[1]);
                         mainHandle.post(new Runnable() {
                             @Override
-                            public void run() {
+                            public void run() {//环境指数判断
+                                if ((isMoreThan( "50",strArr[0]))||(isMoreThan( "50",strArr[1]))){
+                                    index.setText("安全");
+                                }
+                                else {
+                                    index.setText("危险");
+                                }
                                 temp.setText(strArr[0]);
                                 humi.setText(strArr[1]);
                             }
@@ -250,5 +286,30 @@ public class OneFragment extends Fragment {
         }
     }
 
-
+    /**
+     34      * 比较两个字符串的大小，按字母的ASCII码比较
+     35      * @param pre
+     36      * @param next
+     37      * @return
+     38      * */
+     private static boolean isMoreThan(String pre, String next){
+         if(null == pre || null == next || "".equals(pre) || "".equals(next)){
+             System.out.println("字符串比较数据不能为空！");
+             return false;
+         }
+         char[] c_pre = pre.toCharArray();
+         char[] c_next = next.toCharArray();
+         int minSize = Math.min(c_pre.length, c_next.length);
+         for (int i = 0; i < minSize; i++) {
+             if((int)c_pre[i] > (int)c_next[i]){
+                 return true;
+             }else if((int)c_pre[i] < (int)c_next[i]){
+                 return false;
+             }
+         }
+         if(c_pre.length > c_next.length){
+             return true;
+         }
+         return false;
+     }
 }

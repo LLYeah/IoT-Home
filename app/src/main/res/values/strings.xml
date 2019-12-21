@@ -5,4 +5,15 @@
     <string name="register_done_hint">完成</string>
     <string name="login">登录</string>
     <string name="login_register_hint">注册</string>
+    <string name="tips">小贴士</string>
+    <string name="tipin">贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容
+    贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容
+    贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容
+    贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容贴士具体内容</string>
+    <string name="register">用 户 注 册</string>
+    <string name="register_userId">用户名</string>
+    <string name="register_password">密码</string>
+    <string name="register_password_confirm">确认密码</string>
+    <string name="register_email">邮箱</string>
+    <string name="register_phone">电话号码</string>
 </resources>

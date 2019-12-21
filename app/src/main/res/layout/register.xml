@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/register">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="43dp"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/register_logo"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="330dp"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="150dp"
+        app:cardBackgroundColor="#8FDDDDDD">
+
+<!--        用户名-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/register_userId"
+                android:textSize="25dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="20dp"/>
+            <EditText
+                android:id="@+id/register_userId"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/register_edit"
+                />
+        </LinearLayout>
+
+<!--        密码-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/register_password"
+                android:textSize="25dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginLeft="20dp"
+                />
+            <EditText
+                android:id="@+id/register_password"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="62dp"
+                android:layout_marginTop="110dp"
+                android:background="@drawable/register_edit"
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
+
+<!--        确认密码-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/register_password_confirm"
+                android:textSize="25dp"
+                android:layout_marginTop="170dp"
+                android:layout_marginLeft="20dp"/>
+            <EditText
+                android:id="@+id/register_password_confirm"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="170dp"
+                android:inputType="textPassword"
+                android:background="@drawable/register_edit"
+                />
+        </LinearLayout>
+
+        <!--        邮箱-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/register_email"
+                android:textSize="25dp"
+                android:layout_marginTop="230dp"
+                android:layout_marginLeft="20dp"/>
+            <EditText
+                android:id="@+id/register_email"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="230dp"
+                android:layout_marginLeft="65dp"
+                android:background="@drawable/register_edit"
+                />
+        </LinearLayout>
+
+        <!--        电话号码-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/register_phone"
+                android:textSize="25dp"
+                android:layout_marginTop="290dp"
+                android:layout_marginLeft="20dp"/>
+            <EditText
+                android:id="@+id/register_phone"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="290dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/register_edit"
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="100dp"
+        android:background="@drawable/bg_register_submit"
+        android:text="确认"
+        android:textSize="20dp"
+        android:textColor="#C9000000"
+        />
+</RelativeLayout>
